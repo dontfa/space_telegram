@@ -30,6 +30,7 @@ def main():
     for i, x in enumerate(links_picture):
         path_to_file = Path(path_dir, f'nasa_apod_{i}{get_file_extension(x)}')
         download_picture(x, path_to_file)
+        print(x)
 
     print(f'Загрузка завершена. Количество загруженных фото: {i + 1}')
 

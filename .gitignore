@@ -1,4 +1,8 @@
 .idea/
 images/
+__pycache__/
 main_for_test.py
+main.py
+telegram_bot.py
+.env
 

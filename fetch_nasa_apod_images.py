@@ -1,11 +1,11 @@
 import requests
 import argparse
 from pathlib import Path
-from shared_funcs import download_picture, get_file_extension
+from shared_funcs import download_picture, get_file_extension, DIRECTORY_IMAGES, NASA_API_KEY
 
 
 def main():
-    path_dir = 'images'
+    path_dir = DIRECTORY_IMAGES
     if not Path(path_dir).exists():
         Path(path_dir).mkdir(parents=True, exist_ok=False)
 
@@ -14,15 +14,15 @@ def main():
     args = parser.parse_args()
     count = 1 if args.count is None else args.count
 
-
-    api_key = 'GxRngRl9Lqka1duiCcFgCzneA578KcVB8NvoFjKu'
     url = f'https://api.nasa.gov/planetary/apod'
     payloads = {
-        'api_key': api_key,
+        'api_key': NASA_API_KEY,
         'count': count,
     }
 
     response = requests.get(url, params=payloads)
+    response.raise_for_status()
+
     links_picture = []
     for x in response.json():
         links_picture.append(x['hdurl'])
@@ -37,3 +37,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

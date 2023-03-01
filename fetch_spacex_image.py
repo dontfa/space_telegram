@@ -1,7 +1,7 @@
 import requests
 import argparse
 from pathlib import Path
-from shared_funcs import download_picture
+from shared_funcs import download_picture, DIRECTORY_IMAGES
 
 
 def get_links_spacex(url):
@@ -13,7 +13,7 @@ def get_links_spacex(url):
 
 
 def main():
-    path_dir = 'images'
+    path_dir = DIRECTORY_IMAGES
     if not Path(path_dir).exists():
         Path(path_dir).mkdir(parents=True, exist_ok=False)
 
